@@ -2,8 +2,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 
+import { addContact } from "../../redux/contacts/operations";
+
 import css from "./ContactForm.module.css";
-import { addContact } from "../../redux/contactsOps";
 
 const initialValues = {
     name: "",
