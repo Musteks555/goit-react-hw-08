@@ -4,7 +4,7 @@ import { requestGetCurrentUser, requestLogOut, requestSignIn, requestSignUp, set
 
 export const register = createAsyncThunk("auth/register", async (formData, thunkAPI) => {
     try {
-        const data = await requestSignUp();
+        const data = await requestSignUp(formData);
         return data;
     } catch (err) {
         return thunkAPI.rejectWithValue(err.message);
@@ -41,7 +41,6 @@ export const refreshUser = createAsyncThunk(
 
         try {
             const data = await requestGetCurrentUser();
-            console.log("data: ", data);
 
             return data;
         } catch (err) {

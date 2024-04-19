@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { requestContacts } from "../../services/api";
+import { fetchContacts } from "../../redux/contacts/operations";
 import { selectLoading } from "../../redux/contacts/selector";
 
 import DocumentTitle from "../../components/DocumentTitle/DocumentTitle";
@@ -14,7 +14,7 @@ const ContactsPage = () => {
     const isLoading = useSelector(selectLoading);
 
     useEffect(() => {
-        dispatch(requestContacts());
+        dispatch(fetchContacts());
     }, [dispatch]);
 
     return (

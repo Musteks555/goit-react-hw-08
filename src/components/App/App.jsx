@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { refreshUser } from "../../redux/auth/operations";
@@ -26,12 +26,14 @@ function App() {
         <b>Refreshing user...</b>
     ) : (
         <Layout>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/register" element={<RestrictedRoute redirectTo="/contacts" component={<RegistrationPage />} />} />
-                <Route path="/login" element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />} />
-                <Route path="/contacts" element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />} />
-            </Routes>
+            <Suspense fallback={null}>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/register" element={<RestrictedRoute redirectTo="/contacts" component={<RegistrationPage />} />} />
+                    <Route path="/login" element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />} />
+                    <Route path="/contacts" element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />} />
+                </Routes>
+            </Suspense>
         </Layout>
     );
 }
